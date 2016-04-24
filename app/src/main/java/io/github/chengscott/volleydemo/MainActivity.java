@@ -3,7 +3,9 @@ package io.github.chengscott.volleydemo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.Switch;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -18,14 +20,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    final String pokemonTag = "Pokemon";
-    final String htcgTag = "HTCG";
+    public final String pokemonTag = "Pokemon";
+    public final String htcgTag = "HTCG";
+    private Switch switchContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getPokemonObject();
+        switchContent = (Switch) findViewById(R.id.switchContent);
+        switchContent.setOnCheckedChangeListener(
+                new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    AppController.getInstance().getRequestQueue().cancelAll(htcgTag);
+                    getPokemonObject();
+                } else {
+                    AppController.getInstance().getRequestQueue().cancelAll(pokemonTag);
+                    getHTCGArray();
+                }
+            }
+        });
+        switchContent.setChecked(true);
     }
 
     private void getPokemonObject() {

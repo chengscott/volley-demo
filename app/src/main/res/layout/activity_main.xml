@@ -9,8 +9,17 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="io.github.chengscott.volleydemo.MainActivity">
 
+    <Switch
+        android:id="@+id/switchContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:showText="true"
+        android:textOff="@string/htcg"
+        android:textOn="@string/pokemon" />
+
     <ListView
         android:id="@+id/listView"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/switchContent" />
 </RelativeLayout>

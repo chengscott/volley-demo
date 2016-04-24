@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">VolleyDemo</string>
+    <string name="pokemon">Pokemon</string>
+    <string name="htcg">HTCG</string>
 </resources>
